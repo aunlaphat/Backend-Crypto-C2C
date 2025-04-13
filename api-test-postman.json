@@ -1,0 +1,246 @@
+{
+    "info": {
+        "_postman_id": "c1bba024-6e25-437b-bc5c-84d4c06bba26",
+        "name": "P2P Exchange API Collection",
+        "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+    },
+    "item": [
+        {
+            "name": "User - Register",
+            "request": {
+                "method": "POST",
+                "header": [
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json",
+                        "type": "text"
+                    }
+                ],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\n    \"username\": \"testuser4\",\n    \"email\": \"test4@example.com\",\n    \"password\": \"password123\"\n}"
+                },
+                "url": {
+                    "raw": "http://localhost:3000/users/register",
+                    "protocol": "http",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "3000",
+                    "path": [
+                        "users",
+                        "register"
+                    ]
+                }
+            }
+        },
+        {
+            "name": "User - Login",
+            "request": {
+                "method": "POST",
+                "header": [
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json",
+                        "type": "text"
+                    }
+                ],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\n    \"email\": \"test4@example.com\",\n    \"password\": \"password123\"\n}"
+                },
+                "url": {
+                    "raw": "http://localhost:3000/users/login",
+                    "protocol": "http",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "3000",
+                    "path": [
+                        "users",
+                        "login"
+                    ]
+                }
+            }
+        },
+        {
+            "name": "Wallet - Get Balance",
+            "request": {
+                "method": "GET",
+                "header": [
+                    {
+                        "key": "Authorization",
+                        "value": "Bearer {{token}}",
+                        "type": "text"
+                    }
+                ],
+                "url": {
+                    "raw": "http://localhost:3000/wallets/1/balance",
+                    "protocol": "http",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "3000",
+                    "path": [
+                        "wallets",
+                        "1",
+                        "balance"
+                    ]
+                }
+            }
+        },
+        {
+            "name": "Wallet - Transfer Internal",
+            "request": {
+                "method": "POST",
+                "header": [
+                    {
+                        "key": "Authorization",
+                        "value": "Bearer {{token}}",
+                        "type": "text"
+                    },
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json",
+                        "type": "text"
+                    }
+                ],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\n    \"fromUserId\": 1,\n    \"toUserId\": 2,\n    \"cryptoType\": \"BTC\",\n    \"amount\": 0.1\n}"
+                },
+                "url": {
+                    "raw": "http://localhost:3000/wallets/transfer",
+                    "protocol": "http",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "3000",
+                    "path": [
+                        "wallets",
+                        "transfer"
+                    ]
+                }
+            }
+        },
+        {
+            "name": "Wallet - External Transfer",
+            "request": {
+                "method": "POST",
+                "header": [
+                    {
+                        "key": "Authorization",
+                        "value": "Bearer {{token}}",
+                        "type": "text"
+                    },
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json",
+                        "type": "text"
+                    }
+                ],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\n    \"fromUserId\": 1,\n    \"cryptoType\": \"BTC\",\n    \"amount\": 0.05,\n    \"externalAddress\": \"external-address-12345\"\n}"
+                },
+                "url": {
+                    "raw": "http://localhost:3000/wallets/external-transfer",
+                    "protocol": "http",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "3000",
+                    "path": [
+                        "wallets",
+                        "external-transfer"
+                    ]
+                }
+            }
+        },
+        {
+            "name": "Order - Create (Auto Match)",
+            "request": {
+                "method": "POST",
+                "header": [
+                    {
+                        "key": "Authorization",
+                        "value": "Bearer {{token}}",
+                        "type": "text"
+                    },
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json",
+                        "type": "text"
+                    }
+                ],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\n    \"userId\": 1,\n    \"cryptoType\": \"BTC\",\n    \"orderType\": \"sell\",\n    \"price\": 1000000,\n    \"amount\": 0.1\n}"
+                },
+                "url": {
+                    "raw": "http://localhost:3000/orders/create",
+                    "protocol": "http",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "3000",
+                    "path": [
+                        "orders",
+                        "create"
+                    ]
+                }
+            }
+        },
+        {
+            "name": "Order - List Pending Orders",
+            "request": {
+                "method": "GET",
+                "header": [
+                    {
+                        "key": "Authorization",
+                        "value": "Bearer {{token}}",
+                        "type": "text"
+                    }
+                ],
+                "url": {
+                    "raw": "http://localhost:3000/orders/list",
+                    "protocol": "http",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "3000",
+                    "path": [
+                        "orders",
+                        "list"
+                    ]
+                }
+            }
+        },
+        {
+            "name": "Transaction - Get User Transactions",
+            "request": {
+                "method": "GET",
+                "header": [
+                    {
+                        "key": "Authorization",
+                        "value": "Bearer {{token}}",
+                        "type": "text"
+                    }
+                ],
+                "url": {
+                    "raw": "http://localhost:3000/transactions/user/1",
+                    "protocol": "http",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "3000",
+                    "path": [
+                        "transactions",
+                        "user",
+                        "1"
+                    ]
+                }
+            }
+        }
+    ]
+}

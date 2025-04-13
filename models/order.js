@@ -1,17 +1,36 @@
 module.exports = (sequelize, DataTypes) => {
-    const Order = sequelize.define("Order", {
+  const Order = sequelize.define("Order", {
+    userId: {
+      type: DataTypes.INTEGER,
+      allowNull: false
+    },
+    cryptoType: {
       type: DataTypes.STRING,
-      crypto_currency: DataTypes.STRING,
-      price_per_unit: DataTypes.FLOAT,
-      amount: DataTypes.FLOAT,
-      status: DataTypes.STRING,
-      created_at: DataTypes.STRING,  // ✅ เพิ่มของเราเอง
-      updated_at: DataTypes.STRING
-    }, {
-        timestamps: false  // ❌ ไม่ใช้ createdAt / updatedAt แบบ auto
-    });
-    Order.associate = (models) => {
-      Order.belongsTo(models.User, { foreignKey: 'user_id' });
-    };
-    return Order;
+      allowNull: false
+    },
+    orderType: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    price: {
+      type: DataTypes.FLOAT,
+      allowNull: false
+    },
+    amount: {
+      type: DataTypes.FLOAT,
+      allowNull: false
+    },
+    status: {
+      type: DataTypes.STRING,
+      defaultValue: 'pending'
+    }
+  }, {
+    timestamps: true
+  });
+
+  Order.associate = function(models) {
+    Order.belongsTo(models.User, { foreignKey: 'userId' });
   };
+
+  return Order;
+};

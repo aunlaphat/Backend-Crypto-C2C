@@ -1,21 +1,19 @@
-const express = require("express");
+const express = require('express');
 const app = express();
-const { sequelize } = require("./models");
+const port = 3000;
 
-// import routes
-const orderRoutes = require("./routes/orderRoutes");
-const walletRoutes = require('./routes/walletRoutes');
-const transactionRoutes = require('./routes/transactionRoutes');
+const userRoute = require('./routes/userRoutes');
+const walletRoute = require('./routes/walletRoutes');
+const orderRoute = require('./routes/orderRoutes');
+const transactionRouter = require('./routes/transactionRoutes');
 
 app.use(express.json());
 
-// routes
-app.use("/api/orders", orderRoutes);
-app.use('/api/wallet', walletRoutes);
-app.use('/api/transactions', transactionRoutes);
+app.use('/users', userRoute);
+app.use('/wallets', walletRoute);
+app.use('/orders', orderRoute);
+app.use('/transactions', transactionRouter);
 
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, async () => {
-  await sequelize.sync();
-  console.log(`Server running on port ${PORT}`);
+app.listen(port, () => {
+  console.log(`Server is running on port ${port}`);
 });

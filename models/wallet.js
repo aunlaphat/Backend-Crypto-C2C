@@ -1,11 +1,24 @@
 module.exports = (sequelize, DataTypes) => {
-    const Wallet = sequelize.define("Wallet", {
-      user_id: DataTypes.INTEGER,
-      currency: DataTypes.STRING,
-      balance: DataTypes.FLOAT,  // ✅ เก็บยอดคงเหลือ
-    });
-    Wallet.associate = (models) => {
-      Wallet.belongsTo(models.User, { foreignKey: "user_id" });
-    };
-    return Wallet;
+  const Wallet = sequelize.define('Wallet', {
+    userId: {
+      type: DataTypes.INTEGER,
+      allowNull: false
+    },
+    cryptoType: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    balance: {
+      type: DataTypes.FLOAT,
+      defaultValue: 0
+    }
+  }, {
+    timestamps: true
+  });
+
+  Wallet.associate = function(models) {
+    Wallet.belongsTo(models.User, { foreignKey: 'userId' });
   };
+
+  return Wallet;
+};

@@ -1,18 +1,26 @@
 module.exports = (sequelize, DataTypes) => {
-    const User = sequelize.define("User", {
-      name: DataTypes.STRING,
-      email: DataTypes.STRING,
-      password: DataTypes.STRING,
-      fiat_balance_THB: DataTypes.FLOAT,
-      fiat_balance_USD: DataTypes.FLOAT,
-    });
-  
-    User.associate = (models) => {
-      User.hasMany(models.Wallet);
-      User.hasMany(models.Order, { foreignKey: 'user_id' });
-      User.hasMany(models.Transaction, { foreignKey: "from_user_id" });
-      User.hasMany(models.Transaction, { foreignKey: "to_user_id" });
-    };
-  
-    return User;
+  const User = sequelize.define("User", {
+    username: DataTypes.STRING,
+    email: DataTypes.STRING,
+    password: DataTypes.STRING,
+    fiat_balance_THB: {
+      type: DataTypes.FLOAT,
+      defaultValue: 0
+    },
+    fiat_balance_USD: {
+      type: DataTypes.FLOAT,
+      defaultValue: 0
+    }
+  }, {
+    timestamps: true
+  });
+
+  User.associate = function(models) {
+    User.hasMany(models.Wallet, { foreignKey: 'userId' });
+    User.hasMany(models.Order, { foreignKey: 'userId' });
+    User.hasMany(models.Transaction, { foreignKey: 'fromUserId', as: 'TransactionsFrom' });
+    User.hasMany(models.Transaction, { foreignKey: 'toUserId', as: 'TransactionsTo' });
   };
+
+  return User;
+};

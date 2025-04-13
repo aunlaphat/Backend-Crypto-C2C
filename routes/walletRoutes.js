@@ -1,6 +1,10 @@
-const express = require("express");
-const walletRouter = express.Router();
-const walletController = require("../controllers/walletController");
+const express = require('express');
+const router = express.Router();
+const walletController = require('../controllers/walletController');
 
-walletRouter.get("/:id", walletController.getWalletByUserId);
-module.exports = walletRouter;
+router.get('/:userId/balance', walletController.getBalance);
+router.post('/transfer', walletController.transferCrypto);
+router.post('/external-transfer', walletController.externalTransfer);
+
+
+module.exports = router;
