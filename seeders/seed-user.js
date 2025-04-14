@@ -11,8 +11,8 @@ module.exports = {
         username: 'testuser1',
         email: 'test1@example.com',
         password: hashedPassword,
-        fiat_balance_THB: 10000, // ✅ เพิ่ม!
-        fiat_balance_USD: 500,   // ✅ เพิ่ม!
+        fiat_balance_THB: 10000, 
+        fiat_balance_USD: 500,  
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -20,8 +20,8 @@ module.exports = {
         username: 'testuser2',
         email: 'test2@example.com',
         password: hashedPassword,
-        fiat_balance_THB: 5000, // ✅ เพิ่ม!
-        fiat_balance_USD: 100,  // ✅ เพิ่ม!
+        fiat_balance_THB: 5000, 
+        fiat_balance_USD: 100,  
         createdAt: new Date(),
         updatedAt: new Date()
       }
